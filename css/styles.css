@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;1,400;1,700&display=swap');
+
+
+
+:root {
+    --primary: hsl(16, 100%, 66%);
+    --primary-light: hsla(16, 100%, 66%, 0.25);
+    --dark: rgb(29, 53, 87);
+    --dark-light:rgb(241, 226, 139);
+}
+
+
+/* RESET CSS */ 
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    text-decoration: none;
+}
+
+*, *::before, *::after{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* END RESET CSS */
+
+/* TYPOGRAPHY */
+*, html, body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.2;
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    position: absolute;
+    text-transform: uppercase;
+    color: var(--dark);
+    font-size: 2.25rem;
+    font-weight: 700;
+    opacity: 1;
+    top: -24px;
+    right: 0;
+    z-index: -10;
+}
+
+a {
+    color: var(--dark);
+}
+
+a:hover {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.navigator {
+    text-transform: uppercase;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+
+/* LAYOUT */ 
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: #f1f1f1;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 64px;
+    background-image: url('../image/europe-map_blue.svg');
+    background-size: contain;
+    background-position: top; 
+    background-repeat: no-repeat;
+}
+
+.hero {
+    width: 90%;
+    margin: 48px;
+    padding: 24px;
+
+    background-color: rgba(255, 255, 255, 0.95);
+
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0, 0.1);
+    z-index: 0;
+}
+
+
+/* NAVIGATION */
+.logo {
+    height: 25px;
+    width: auto;
+}
+
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    row-gap: 16px;
+    position: relative;
+    margin-bottom: 64px;
+}
+
+/* Hamburger */ 
+.box {
+    width: 25px;
+    height: 25px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    background-color: unset;
+    margin: auto 0;
+}
+
+.container-lignes{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.ligne {
+    position: absolute;
+    width: 25px;
+    height: 5px;
+    background-color: var(--primary);
+}
+
+.box .ligne:nth-child(1){
+    top: 0px;
+}
+
+.box .ligne:nth-child(2){
+    top: 10px;
+}
+
+.box .ligne:nth-child(3){
+    top: 20px;
+}
+
+/* Animation au retour */
+.b3 .ligne:nth-child(1), .ligne:nth-child(3){
+    transform: rotate(0deg);
+    transition:
+        transform 0.1s ease-in-out,
+        top 0.1s 0.1s ease-in-out;
+}
+
+.b3 .ligne:nth-child(2){
+    transition: opacity 0.1s 0.1s ease-in-out;
+}
+
+
+/* Animation à l'aller */
+.b3.active .ligne:nth-child(1){
+    top: 10px;
+    transform: rotate(45deg);
+    transition:
+        top 0.1s ease-in-out,
+        transform 0.1s 0.1s ease-in-out;
+}
+
+.b3.active .ligne:nth-child(2){
+    transition: opacity 0.1s ease-in-out;
+    opacity:0;
+}
+
+.b3.active .ligne:nth-child(3){
+    top: 10px;
+    transform: rotate(-45deg);
+    transition:
+        top 0.1s ease-in-out,
+        transform 0.1s 0.1s ease-in-out;
+}
+
+
+/* Menu */
+.menu:not(.active) {
+    display: none;
+}
+
+.menu, 
+.icons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    position: absolute;
+    top: 100%;
+    margin-top: 16px;
+
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.menu li {
+    font-size: 1.25rem ;
+}
+
+.icons:not(.active){
+    display: none;
+}
+
+.icons > li img {
+    width: 24px;
+    height: 24px;
+    color:hsl(16, 100%, 66%)
+}
+
+
+/* CONTENT */
+.content > *:not(:last-child) {
+    margin-bottom: 75px;
+}
+
+
+.title {
+    padding: 16px;
+    background-color: white;
+}
+
+.application,
+.features,
+.buy{
+    position: relative;
+    padding: 20px;
+    background-color: var(--primary-light);
+    border-radius: 8px 0 8px 0;
+}
+
+blockquote {
+    font-style: italic;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-top: 8px;
+}
+
+
+.feature__list li {
+    margin-bottom: 8px;
+}
+
+.feature__list li span{
+    display: block;
+    font-size: 0.5rem;
+    opacity: 0.5;
+}
+
+
+
+/* Buy */
+.btn {
+    width: 200px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    
+    background-color: var(--primary);
+    border: none;
+    border-radius: 4px;
+
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: var(--dark);
+    color: white;
+}
+
+
+/* MAP */
+.map {
+    display: none;
+}
+
+
+
+@media all and (min-width: 750px) {
+    .wrapper {
+        background-position: center;
+        background-size: cover;
+    }
+
+    .hero {
+        width: 90%;
+        max-width: 1400px;
+        padding: 48px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        column-gap: 16px;
+    }
+
+    .box {
+        display: none;
+    }
+
+    .menu:not(.active) {
+        display: flex;
+    }
+
+    .menu {
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+        top: 0;
+        margin-top: 0;
+        position: relative;
+    }
+
+
+    /* CONTENT */
+
+    .content {
+        width: 40%;
+    }
+
+
+    .map {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 55%;
+        overflow: hidden;
+        background-color: rgba(255,255,255,0.5);
+        background-image: url('../image/europe-map_blue.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        position: relative;
+    }
+
+    /* ANIMATION */
+    .anime {
+        display: flex;
+        align-items: center;
+        justify-content:flex-start;
+        position: relative;
+        width: 50%;
+        height: 50%;
+    }
+
+
+    .paths {
+        display: flex;
+        align-items: center;
+        width: 75%;
+        position: relative;
+    }
+
+
+    #plane {
+        position: absolute;
+        top: 0%;
+        left: 0%;
+        font-size: 15px;
+        color: var(--primary);
+        filter:drop-shadow(0 0 5px black)
+    }
+
+    #flight,
+    #race {
+        position:absolute;
+        stroke: none;
+        fill: none;
+    }
+
+    #car {
+        position: absolute;
+        top: 5%;
+        left: 15%;
+        font-size: 15px;
+        color: var(--primary);
+        filter:drop-shadow(0 0 5px black)
+    }
+    
+}
+
+
+
